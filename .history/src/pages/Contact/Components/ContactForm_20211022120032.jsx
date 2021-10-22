@@ -1,11 +1,12 @@
 import React, {useState} from "react";
 
 const emailPattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+const urlPattern = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
 const phonePattern = /(84|0[3|5|7|8|9])+([0-9]{8})\b/;
 
 export default function ContactForm() {
   const [form, setForm] = useState({
-    name: '',
+    name: "",
   });
 
   const [error, setError] = useState({});
@@ -28,11 +29,8 @@ export default function ContactForm() {
     if (!emailPattern.test(form.email)) {
       errorObject.email = "Vui long nhap dung dinh dang email";
     }
-    if (!form.title) {
-      errorObject.title = "Vui long dien tieu de";
-    }
-    if (!form.content) {
-      errorObject.content = "Vui long dien noi dung";
+    if (!urlPattern.test(form.url)) {
+      errorObject.url = "Vui long nhap dung dinh dang url";
     }
     setError(errorObject);
     if (Object.keys(errorObject).length === 0) {
@@ -61,16 +59,18 @@ export default function ContactForm() {
         <input type="text" placeholder="Đường dẫn website http://" />
       </label>
       <label>
-        <p>Tiêu đề<span>*</span></p>
-        <input onChange={handleInputChange} name="title" value={form.title} type="text" placeholder="Tiêu đề liên hệ" />
-        {error.title && <p className="error-text">{error.title}</p>}
+        <p>
+          Tiêu đề<span>*</span>
+        </p>
+        <input type="text" placeholder="Tiêu đề liên hệ" />
       </label>
       <label>
-        <p>Nội dung<span>*</span></p>
-        <textarea onChange={handleInputChange} name="content" value={form.content} cols={30} rows={10} defaultValue={""} />
-        {error.content && <p className="error-text">{error.content}</p>}
+        <p>
+          Nội dung<span>*</span>
+        </p>
+        <textarea name id cols={30} rows={10} defaultValue={""} />
       </label>
-      <div className="btn main rect" onClick={submit}>đăng ký</div>
+      <div className="btn main rect">đăng ký</div>
     </div>
   );
 }

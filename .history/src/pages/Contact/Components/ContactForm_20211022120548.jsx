@@ -6,6 +6,7 @@ const phonePattern = /(84|0[3|5|7|8|9])+([0-9]{8})\b/;
 export default function ContactForm() {
   const [form, setForm] = useState({
     name: '',
+    
   });
 
   const [error, setError] = useState({});

@@ -20,15 +20,8 @@ export default function ProfileInfo() {
     if(!form.name) {
       errorObject.name = "Vui long dien ho ten"
     }
-    if(!phonePattern.test(form.phone)) {
-      errorObject.phone = "Vui long nhap dung dinh dang phone"
-    }
-    if(!emailPattern.test(form.email)) {
-      errorObject.email = "Vui long nhap dung dinh dang email"
-    }
-    setError(errorObject)
-    if(Object.keys(errorObject).length === 0) {
-      alert('Thanh Cong')
+    if(!phonePattern) {
+      errorObject.name = "Vui long dien ho ten"
     }
   }
   return (
@@ -53,7 +46,7 @@ export default function ProfileInfo() {
         <p>Skype<span>*</span></p>
         <input type="text" placeholder="Skype url" />
       </label>
-      <div className="btn main rect" onClick={submit}>LƯU LẠI</div>
+      <div className="btn main rect">LƯU LẠI</div>
     </div>
   );
 }

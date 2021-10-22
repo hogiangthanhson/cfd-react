@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 
-const emailPattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-const phonePattern = /(84|0[3|5|7|8|9])+([0-9]{8})\b/;
-
 export default function ProfileInfo() {
   const [form, setForm] = useState({})
   const [error, setError] = useState({})
@@ -18,17 +15,7 @@ export default function ProfileInfo() {
   const submit = () => {
     let errorObject = {};
     if(!form.name) {
-      errorObject.name = "Vui long dien ho ten"
-    }
-    if(!phonePattern.test(form.phone)) {
-      errorObject.phone = "Vui long nhap dung dinh dang phone"
-    }
-    if(!emailPattern.test(form.email)) {
-      errorObject.email = "Vui long nhap dung dinh dang email"
-    }
-    setError(errorObject)
-    if(Object.keys(errorObject).length === 0) {
-      alert('Thanh Cong')
+      errorObject.name = ""
     }
   }
   return (
@@ -39,11 +26,11 @@ export default function ProfileInfo() {
       </label>
       <label>
         <p>Số điện thoại<span>*</span></p>
-        <input onChange={handleInputChange}  name="phone" value={form.phone} type="text" placeholder="0949******" />
+        <input type="text" placeholder="0949******" />
       </label>
       <label>
         <p>Email<span>*</span></p>
-        <input onChange={handleInputChange}  name="email" value={form.email} defaultValue="vuong.dang@dna.vn" disabled type="text" />
+        <input defaultValue="vuong.dang@dna.vn" disabled type="text" />
       </label>
       <label>
         <p>Facebook<span>*</span></p>
@@ -53,7 +40,7 @@ export default function ProfileInfo() {
         <p>Skype<span>*</span></p>
         <input type="text" placeholder="Skype url" />
       </label>
-      <div className="btn main rect" onClick={submit}>LƯU LẠI</div>
+      <div className="btn main rect">LƯU LẠI</div>
     </div>
   );
 }

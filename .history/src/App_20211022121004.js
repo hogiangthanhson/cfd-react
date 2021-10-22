@@ -27,7 +27,7 @@ function App() {
       {/* <Faq /> */}
       {/* <CoinIntroduce /> */}
       {/* <Contact /> */}
-      <Profile />
+      {/* <Profile /> */}
       {/* <Register /> */}
       {/* <Pay /> */}
       <Footer />

@@ -21,7 +21,7 @@ export default function RegisterForm() {
   const submit = () => {
     let errorObject = {};
     if (!form.name) {
-      errorObject.name = "Vui long dien ho va ten";
+      errorObject.name = "Vui long dien ho vao ten";
     }
     if (!phonePattern.test(form.phone)) {
       errorObject.phone = "Vui long nhap dung dinh dang phone";
@@ -51,12 +51,22 @@ export default function RegisterForm() {
       </label>
       <label>
         <p>Email<span>*</span></p>
-        <input onChange={handleInputChange} name="email" value={form.email} type="text" placeholder="Email của bạn"/>
+        <input onChange={handleInputChange} name="email" value={form.email} type="text"
+          placeholder="Email của bạn"
+        />
         {error.email && <p className="error-text">{error.email}</p>}
       </label>
       <label>
-        <p>URL Facebook<span>*</span></p>
-        <input onChange={handleInputChange} name="url" value={form.url} type="text" placeholder="https://facebook.com"/>
+        <p>
+          URL Facebook<span>*</span>
+        </p>
+        <input
+          onChange={handleInputChange}
+          name="url"
+          value={form.url}
+          type="text"
+          placeholder="https://facebook.com"
+        />
         {error.url && <p className="error-text">{error.url}</p>}
       </label>
       <label className="disable">
@@ -81,9 +91,17 @@ export default function RegisterForm() {
       </label>
       <label>
         <p>Ý kiến cá nhân</p>
-        <input type="text" placeholder="Mong muốn cá nhân và lịch bạn có thể học."/>
+        <input
+          onChange={handleInputChange}
+          name="des"
+          value={form.des}
+          type="text"
+          placeholder="Mong muốn cá nhân và lịch bạn có thể học."
+        />
       </label>
-      <div className="btn main rect" onClick={submit}>đăng ký</div>
+      <div className="btn main rect" onClick={submit}>
+        đăng ký
+      </div>
     </div>
   );
 }

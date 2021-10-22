@@ -6,13 +6,12 @@ const phonePattern = /(84|0[3|5|7|8|9])+([0-9]{8})\b/;
 
 export default function RegisterForm() {
   const [form, setForm] = useState({
-    name: '',
+    name: "",
   });
 
   const [error, setError] = useState({});
   const handleInputChange = (e) => {
-    let name = e.currentTarget.name;
-    let value = e.currentTarget.value;
+    let name = e.currentTarget.value
     setForm({
       ...form,
       [name]: value,
@@ -21,16 +20,13 @@ export default function RegisterForm() {
   const submit = () => {
     let errorObject = {};
     if (!form.name) {
-      errorObject.name = "Vui long dien ho va ten";
+      errorObject.name = "Vui long dien ho vao ten";
     }
     if (!phonePattern.test(form.phone)) {
       errorObject.phone = "Vui long nhap dung dinh dang phone";
     }
     if (!emailPattern.test(form.email)) {
       errorObject.email = "Vui long nhap dung dinh dang email";
-    }
-    if (!urlPattern.test(form.url)) {
-      errorObject.url = "Vui long nhap dung dinh dang url";
     }
     setError(errorObject);
     if (Object.keys(errorObject).length === 0) {
@@ -40,24 +36,55 @@ export default function RegisterForm() {
   return (
     <div className="form">
       <label>
-        <p>Họ và tên<span>*</span></p>
-        <input onChange={handleInputChange} name="name" value={form.name} type="text" placeholder="Họ và tên bạn"/>
+        <p>
+          Họ và tên<span>*</span>
+        </p>
+        <input
+          onChange={handleInputChange}
+          name="name"
+          value={form.name}
+          type="text"
+          placeholder="Họ và tên bạn"
+        />
         {error.name && <p className="error-text">{error.name}</p>}
       </label>
       <label>
-        <p>Số điện thoại<span>*</span></p>
-        <input onChange={handleInputChange} name="phone" value={form.phone} type="text" placeholder="Số điện thoại"/>
+        <p>
+          Số điện thoại<span>*</span>
+        </p>
+        <input
+          onChange={handleInputChange}
+          name="phone"
+          value={form.phone}
+          type="text"
+          placeholder="Số điện thoại"
+        />
         {error.phone && <p className="error-text">{error.phone}</p>}
       </label>
       <label>
-        <p>Email<span>*</span></p>
-        <input onChange={handleInputChange} name="email" value={form.email} type="text" placeholder="Email của bạn"/>
+        <p>
+          Email<span>*</span>
+        </p>
+        <input
+          onChange={handleInputChange}
+          name="email"
+          value={form.email}
+          type="text"
+          placeholder="Email của bạn"
+        />
         {error.email && <p className="error-text">{error.email}</p>}
       </label>
       <label>
-        <p>URL Facebook<span>*</span></p>
-        <input onChange={handleInputChange} name="url" value={form.url} type="text" placeholder="https://facebook.com"/>
-        {error.url && <p className="error-text">{error.url}</p>}
+        <p>
+          URL Facebook<span>*</span>
+        </p>
+        <input
+          onChange={handleInputChange}
+          name="url"
+          value={form.url}
+          type="text"
+          placeholder="https://facebook.com"
+        />
       </label>
       <label className="disable">
         <p>Sử dụng COIN</p>
@@ -81,9 +108,17 @@ export default function RegisterForm() {
       </label>
       <label>
         <p>Ý kiến cá nhân</p>
-        <input type="text" placeholder="Mong muốn cá nhân và lịch bạn có thể học."/>
+        <input
+          onChange={handleInputChange}
+          name="des"
+          value={form.des}
+          type="text"
+          placeholder="Mong muốn cá nhân và lịch bạn có thể học."
+        />
       </label>
-      <div className="btn main rect" onClick={submit}>đăng ký</div>
+      <div className="btn main rect" onClick={submit}>
+        đăng ký
+      </div>
     </div>
   );
 }

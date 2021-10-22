@@ -5,7 +5,7 @@ const phonePattern = /(84|0[3|5|7|8|9])+([0-9]{8})\b/;
 
 export default function ContactForm() {
   const [form, setForm] = useState({
-    name: '',
+    name: "",
   });
 
   const [error, setError] = useState({});
@@ -29,10 +29,7 @@ export default function ContactForm() {
       errorObject.email = "Vui long nhap dung dinh dang email";
     }
     if (!form.title) {
-      errorObject.title = "Vui long dien tieu de";
-    }
-    if (!form.content) {
-      errorObject.content = "Vui long dien noi dung";
+      errorObject.url = "Vui long nhap dung dinh dang url";
     }
     setError(errorObject);
     if (Object.keys(errorObject).length === 0) {
@@ -62,13 +59,12 @@ export default function ContactForm() {
       </label>
       <label>
         <p>Tiêu đề<span>*</span></p>
-        <input onChange={handleInputChange} name="title" value={form.title} type="text" placeholder="Tiêu đề liên hệ" />
+        <input type="text" placeholder="Tiêu đề liên hệ" />
         {error.title && <p className="error-text">{error.title}</p>}
       </label>
       <label>
         <p>Nội dung<span>*</span></p>
-        <textarea onChange={handleInputChange} name="content" value={form.content} cols={30} rows={10} defaultValue={""} />
-        {error.content && <p className="error-text">{error.content}</p>}
+        <textarea name id cols={30} rows={10} defaultValue={""} />
       </label>
       <div className="btn main rect" onClick={submit}>đăng ký</div>
     </div>

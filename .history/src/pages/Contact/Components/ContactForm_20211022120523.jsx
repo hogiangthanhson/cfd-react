@@ -6,6 +6,7 @@ const phonePattern = /(84|0[3|5|7|8|9])+([0-9]{8})\b/;
 export default function ContactForm() {
   const [form, setForm] = useState({
     name: '',
+    
   });
 
   const [error, setError] = useState({});
@@ -68,7 +69,6 @@ export default function ContactForm() {
       <label>
         <p>Nội dung<span>*</span></p>
         <textarea onChange={handleInputChange} name="content" value={form.content} cols={30} rows={10} defaultValue={""} />
-        {error.content && <p className="error-text">{error.content}</p>}
       </label>
       <div className="btn main rect" onClick={submit}>đăng ký</div>
     </div>

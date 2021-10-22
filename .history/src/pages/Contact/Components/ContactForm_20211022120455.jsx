@@ -6,6 +6,7 @@ const phonePattern = /(84|0[3|5|7|8|9])+([0-9]{8})\b/;
 export default function ContactForm() {
   const [form, setForm] = useState({
     name: '',
+    title: ''
   });
 
   const [error, setError] = useState({});
@@ -31,8 +32,8 @@ export default function ContactForm() {
     if (!form.title) {
       errorObject.title = "Vui long dien tieu de";
     }
-    if (!form.content) {
-      errorObject.content = "Vui long dien noi dung";
+    if (!form.title) {
+      errorObject.title = "Vui long dien tieu de";
     }
     setError(errorObject);
     if (Object.keys(errorObject).length === 0) {
@@ -68,7 +69,6 @@ export default function ContactForm() {
       <label>
         <p>Nội dung<span>*</span></p>
         <textarea onChange={handleInputChange} name="content" value={form.content} cols={30} rows={10} defaultValue={""} />
-        {error.content && <p className="error-text">{error.content}</p>}
       </label>
       <div className="btn main rect" onClick={submit}>đăng ký</div>
     </div>

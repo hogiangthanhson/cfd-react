@@ -27,9 +27,7 @@ export default function ProfileInfo() {
       errorObject.email = "Vui long nhap dung dinh dang email"
     }
     setError(errorObject)
-    if(Object.keys(errorObject).length === 0) {
-      alert('Thanh Cong')
-    }
+    
   }
   return (
     <div className="tab1" style={{ display: "none" }}>

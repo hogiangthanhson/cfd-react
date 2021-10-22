@@ -21,7 +21,7 @@ export default function RegisterForm() {
   const submit = () => {
     let errorObject = {};
     if (!form.name) {
-      errorObject.name = "Vui long dien ho va ten";
+      errorObject.name = "Vui long dien ho vao ten";
     }
     if (!phonePattern.test(form.phone)) {
       errorObject.phone = "Vui long nhap dung dinh dang phone";
@@ -83,7 +83,8 @@ export default function RegisterForm() {
         <p>Ý kiến cá nhân</p>
         <input type="text" placeholder="Mong muốn cá nhân và lịch bạn có thể học."/>
       </label>
-      <div className="btn main rect" onClick={submit}>đăng ký</div>
+      <div className="btn main rect" onClick={submit}>
+        đăng ký</div>
     </div>
   );
 }

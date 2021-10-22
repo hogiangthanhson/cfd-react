@@ -9,7 +9,7 @@ import CourseDetail from "./pages/CourseDetail";
 import Email from "./pages/Email";
 import Faq from "./pages/Faq";
 import CoinIntroduce from "./pages/CoinIntroduce";
-import Contact from "./pages/Contact";
+import Collab from "./pages/Contact";
 import Profile from "./pages/Profile";
 import Register from "./pages/Register";
 import Pay from "./pages/Pay";
@@ -26,8 +26,8 @@ function App() {
       {/* <Email /> */}
       {/* <Faq /> */}
       {/* <CoinIntroduce /> */}
-      {/* <Contact /> */}
-      <Profile />
+      {/* <Collab /> */}
+      {/* <Profile /> */}
       {/* <Register /> */}
       {/* <Pay /> */}
       <Footer />
