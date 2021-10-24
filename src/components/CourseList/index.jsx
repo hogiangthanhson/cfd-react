@@ -1,5 +1,5 @@
 import React from "react";
-import Course  from "../Course";
+import CourseItem  from "../CourseItem";
 
 export function CourseList({title, description, smallTitle, name, list}) {
   return (
@@ -13,7 +13,7 @@ export function CourseList({title, description, smallTitle, name, list}) {
         </div>
         <div className="list row">
           {list.map((o, i) => (
-            <Course
+            <CourseItem
               key={i}
               status={o.status}
               person={o.person}

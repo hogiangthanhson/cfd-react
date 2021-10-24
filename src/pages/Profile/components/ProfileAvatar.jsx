@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function ProfileAvatar() {
+export function ProfileAvatar() {
   return (
     <div className="top-info">
       <div className="avatar">

@@ -1,0 +1,6 @@
+export * from './ProfileAvatar'
+export * from './ProfileCoin'
+export * from './ProfileCourse'
+export * from './ProfileHistory'
+export * from './ProfileInfo'
+export * from './ProfileProject'

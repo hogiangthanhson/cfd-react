@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 
-const emailPattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 const phonePattern = /(84|0[3|5|7|8|9])+([0-9]{8})\b/;
 
-export default function ProfileInfo() {
-  const [form, setForm] = useState({})
+export function ProfileInfo() {
+  const [form, setForm] = useState({
+    email: 'vuong.dangha@dna.vn'
+  })
   const [error, setError] = useState({})
   const handleInputChange = (e) => {
     let name = e.currentTarget.name;
@@ -23,27 +24,26 @@ export default function ProfileInfo() {
     if(!phonePattern.test(form.phone)) {
       errorObject.phone = "Vui long nhap dung dinh dang phone"
     }
-    if(!emailPattern.test(form.email)) {
-      errorObject.email = "Vui long nhap dung dinh dang email"
-    }
     setError(errorObject)
     if(Object.keys(errorObject).length === 0) {
       alert('Thanh Cong')
     }
   }
   return (
-    <div className="tab1" style={{ display: "none" }}>
+    <div className="tab1">
       <label>
         <p>Họ và tên<span>*</span></p>
         <input onChange={handleInputChange}  name="name" value={form.name}  type="text" placeholder="Nguyễn Văn A" />
+        {error.name && <p className="error-text">{error.name}</p>}
       </label>
       <label>
         <p>Số điện thoại<span>*</span></p>
         <input onChange={handleInputChange}  name="phone" value={form.phone} type="text" placeholder="0949******" />
+        {error.phone && <p className="error-text">{error.phone}</p>}
       </label>
       <label>
         <p>Email<span>*</span></p>
-        <input onChange={handleInputChange}  name="email" value={form.email} defaultValue="vuong.dang@dna.vn" disabled type="text" />
+        <input defaultValue="vuong.dang@dna.vn" disabled type="text" />
       </label>
       <label>
         <p>Facebook<span>*</span></p>

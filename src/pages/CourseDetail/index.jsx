@@ -2,8 +2,12 @@ import React from "react";
 import BannerDetail from "./components/BannerDetail";
 import Content from "./components/Content";
 import { CourseList } from "../../components";
+import { useParams } from "react-router";
 
 export default function CourseDetail() {
+
+  let {slug} = useParams()
+
   let listProject = [
     {
       name: "React JS",

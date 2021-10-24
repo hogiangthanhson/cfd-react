@@ -1,3 +1,5 @@
+import {Link, useRouteMatch} from "react-router-dom"
+
 export function Header() {
   return (
     <header id="header">
@@ -10,10 +12,10 @@ export function Header() {
           </div>
           <span className="text">menu</span>
         </div>
-        <a href="#" className="logo">
+        <Link to="/" exact className="logo">
           <img src="img/logo.svg" alt="" />
           <h1>CFD</h1>
-        </a>
+        </Link>
         <div className="right">
           <div className="have-login">
             <div className="account">
@@ -26,9 +28,9 @@ export function Header() {
             </div>
             <div className="hamberger"></div>
             <div className="sub">
-              <a href="#">Khóa học của tôi</a>
-              <a href="#">Thông tin tài khoản</a>
-              <a href="#">Đăng xuất</a>
+              <Link to="/thong-tin-ca-nhan">Thông tin tài khoản</Link>
+              <Link to="/thong-tin-ca-nhan/khoa-hoc">Khóa học của tôi</Link>
+              <Link to="/thong-tin-ca-nhan/dang-xuat">Đăng xuất</Link>
             </div>
           </div>
         </div>
