@@ -18,47 +18,11 @@ function isDesktop() {
 function homePage() {
     if ($('#main.homepage').length === 0) return;
 
-    function teamSlider() {
-        let $carouselGallery = $(".homepage .section-gallery .list"),
-            $progressBar = $('.homepage .section-gallery .timeline .process');
+    // function teamSlider() {
+        
+    // }
 
-        $carouselGallery.flickity({
-            contain: true,
-            wrapAround: false,
-            freeScroll: true,
-            cellAlign: 'left',
-            lazyLoad: 3,
-            imagesLoaded: true,
-            prevNextButtons: false
-        });
-        // var flkty = $carousel.data('flickity');
-        // var $imgs = $('.homepage .section-4 .list .carousel-cell img');
-
-        // $carousel.on('scroll.flickity', function (event, progress) {
-        //     flkty.slides.forEach(function (slide, i) {
-        //         var img = $imgs[i];
-        //         var x = (slide.target + flkty.x) * -1 / 14;
-        //         img.style.transform = 'translateX( ' + x + 'px)';
-        //     });
-        // });
-
-        $carouselGallery.on('scroll.flickity', function (event, progress) {
-            progress = Math.max(0.05, Math.min(1, progress));
-            $progressBar.width(progress * 100 + '%');
-        });
-
-        let ctrPrevGallery = $('.homepage .section-gallery .btn_ctr.prev'),
-            ctrNextGallery = $('.homepage .section-gallery .btn_ctr.next');
-
-        ctrPrevGallery.on('click', function () {
-            $carouselGallery.flickity('previous');
-        });
-        ctrNextGallery.on('click', function () {
-            $carouselGallery.flickity('next');
-        });
-    }
-
-    teamSlider();
+    // teamSlider();
 
     function jarallax() {
         $('.jarallax').jarallax({
@@ -253,49 +217,8 @@ $(document).ready(function () {
     });
 
 
-    function testimonialSlider() {
-        if ($('.section-testimonial').length) {
-            var $carousel = $(".section-testimonial .images .list").flickity({
-                contain: true,
-                wrapAround: false,
-                freeScroll: false,
-                cellAlign: 'center',
-                lazyLoad: 2,
-                imagesLoaded: true,
-                prevNextButtons: false,
-                on: {
-                    ready: function () {
-                        let dotsSlideTes = $('.section-testimonial .flickity-page-dots');
-                        let dotsNew = $('.section-testimonial .dots');
-                        dotsSlideTes.appendTo(dotsNew);
-                    },
-                    change: function (index) {
-                        $('.testimonial .ct').removeClass('active');
-                        $('.testimonial .ct-' + (index + 1)).addClass('active');
-                    }
-                }
-            });
-            var flkty = $carousel.data('flickity');
-            var $imgs = $('.section-testimonial .carousel-cell picture img');
-
-            $carousel.on('scroll.flickity', function (event, progress) {
-                flkty.slides.forEach(function (slide, i) {
-                    var img = $imgs[i];
-                    var x = (slide.target + flkty.x) * -1 / 2;
-                    img.style.transform = 'translateX( ' + x + 'px)';
-                });
-            });
-
-            let ctrPrevTes = $('.section-testimonial .btn_ctr.prev'),
-                ctrNextTes = $('.section-testimonial .btn_ctr.next');
-
-            ctrPrevTes.on('click', function () {
-                $carousel.flickity('previous', true);
-            });
-            ctrNextTes.on('click', function () {
-                $carousel.flickity('next', true);
-            });
-        }
-    }
-    testimonialSlider();
+    // function testimonialSlider() {
+        
+    // }
+    // testimonialSlider();
 })

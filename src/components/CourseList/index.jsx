@@ -1,30 +1,25 @@
 import React from "react";
-import CourseItem  from "../CourseItem";
+import CourseItem from "../CourseItem";
 
-export function CourseList({title, description, smallTitle, name, list}) {
+export function CourseList(props) {
   return (
     <section className="section-courseoffline">
       <div className="container">
-        {title && <h2 class="main-title">{title}</h2>}
-        {description && <p className="top-des">{description}</p>}
+        {props.title && <h2 class="main-title">{props.title}</h2>}
+        {props.description && <p className="top-des">{props.description}</p>}
         <div className="textbox">
-          {smallTitle && <h3 class="sub-title">{smallTitle}</h3>}
-          <h2 className="main-title">{name}</h2>
-        </div>
+          {props.smallTitle && <h3 class="sub-title">{props.smallTitle}</h3>}
+          {props.name && <h2 class="main-title">{props.name}</h2>}
+          </div>
         <div className="list row">
-          {list.map((o, i) => (
-            <CourseItem
-              key={i}
-              status={o.status}
-              person={o.person}
-              liked={o.liked}
-              name={o.name}
-              description={o.description}
-              teacher={o.teacher}
-              img = {o.img}
-              share = {o.share}
-            />
-          ))}
+          {props.type === "offline" &&
+            props.list.map(function (o, i) {
+              return <CourseItem key={i} {...o} />;
+            })}
+          {props.type === "online" &&
+            props.list.map(function (o, i) {
+              return <CourseItem key={i} {...o} />;
+            })}
           ;
         </div>
       </div>

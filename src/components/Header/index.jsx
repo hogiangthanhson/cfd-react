@@ -1,6 +1,8 @@
-import {Link, useRouteMatch} from "react-router-dom"
+import { Link } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
 
 export function Header() {
+  let { user, logout, togglePopupLogin } = useAuth();
   return (
     <header id="header">
       <div className="wrap">
@@ -17,22 +19,48 @@ export function Header() {
           <h1>CFD</h1>
         </Link>
         <div className="right">
-          <div className="have-login">
-            <div className="account">
-              <a href="#" className="info">
-                <div className="name">Trần Lê Trọng Nghĩa</div>
-                <div className="avatar">
-                  <img src="img/avt.png" alt="" />
-                </div>
+          {user ? (
+            <div className="have-login">
+              <div className="account">
+                <a href="#" className="info">
+                  <div className="name">{user.title}</div>
+                  <div className="avatar">
+                    <img src={user?.avatar?.link} alt="" />
+                  </div>
+                </a>
+              </div>
+              <div className="hamberger"></div>
+              <div className="sub">
+                <Link to="/thong-tin-ca-nhan">Thông tin tài khoản</Link>
+                <Link to="/thong-tin-ca-nhan/khoa-hoc">Khóa học của tôi</Link>
+                <Link
+                  to="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    logout();
+                  }}
+                >
+                  Đăng xuất
+                </Link>
+              </div>
+            </div>
+          ) : (
+            <div className="not-login bg-none">
+              <a
+                href="#"
+                className="btn-register"
+                onClick={(e) => {
+                  e.preventDefault();
+                  togglePopupLogin(true);
+                }}
+              >
+                Đăng nhập
+              </a>
+              <a href="login.html" className="btn main btn-open-login">
+                Đăng ký
               </a>
             </div>
-            <div className="hamberger"></div>
-            <div className="sub">
-              <Link to="/thong-tin-ca-nhan">Thông tin tài khoản</Link>
-              <Link to="/thong-tin-ca-nhan/khoa-hoc">Khóa học của tôi</Link>
-              <Link to="/thong-tin-ca-nhan/dang-xuat">Đăng xuất</Link>
-            </div>
-          </div>
+          )}
         </div>
       </div>
     </header>

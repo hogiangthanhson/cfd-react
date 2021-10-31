@@ -1,30 +1,31 @@
 import React from "react";
-import { NavLink, useRouteMatch } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export function Navbar() {
+  const showMenu = (e) => {
+    document.querySelector("body").classList.toggle("menu-is-show");
+  };
   return (
     <nav class="nav">
       <ul>
-        <li class="active">
-          <NavLink exact to="/">
-            Trang chủ
-          </NavLink>
+        <li class="li_login">
+          <a href="#">Đăng nhập</a>
+          <a href="#">Đăng ký</a>
         </li>
-        <li>
+        <li onClick={showMenu}>
+          <NavLink exact to="/">Trang chủ</NavLink>
+        </li>
+        <li onClick={showMenu}>
           <NavLink to="/team">CFD Team</NavLink>
         </li>
-        <li>
+        <li onClick={showMenu}>
           <NavLink to="/khoa-hoc">Khóa Học</NavLink>
         </li>
-        <li>
+        <li onClick={showMenu}>
           <NavLink to="/du-an">Dự Án</NavLink>
         </li>
-        <li>
+        <li onClick={showMenu}>
           <NavLink to="/hop-tac">Liên hệ</NavLink>
-        </li>
-        <li class="li_login">
-          <NavLink to="/dang-nhap">Đăng nhập</NavLink>
-          <NavLink to="/dang-ky">Đăng ký</NavLink>
         </li>
       </ul>
     </nav>

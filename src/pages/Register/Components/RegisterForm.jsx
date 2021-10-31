@@ -1,63 +1,82 @@
-import React, {useState} from "react";
-
-const emailPattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-const urlPattern = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
-const phonePattern = /(84|0[3|5|7|8|9])+([0-9]{8})\b/;
+import React, { useState } from "react";
+import { useForm } from "../../../hooks/useForm";
 
 export default function RegisterForm() {
-  const [form, setForm] = useState({
-    name: '',
-  });
+  // const [form, setForm] = useState({
+  //   name: '',
+  // });
 
-  const [error, setError] = useState({});
-  const handleInputChange = (e) => {
-    let name = e.currentTarget.name;
-    let value = e.currentTarget.value;
-    setForm({
-      ...form,
-      [name]: value,
-    });
-  };
-  const submit = () => {
-    let errorObject = {};
-    if (!form.name) {
-      errorObject.name = "Vui long dien ho va ten";
-    }
-    if (!phonePattern.test(form.phone)) {
-      errorObject.phone = "Vui long nhap dung dinh dang phone";
-    }
-    if (!emailPattern.test(form.email)) {
-      errorObject.email = "Vui long nhap dung dinh dang email";
-    }
-    if (!urlPattern.test(form.url)) {
-      errorObject.url = "Vui long nhap dung dinh dang url";
-    }
-    setError(errorObject);
-    if (Object.keys(errorObject).length === 0) {
-      alert("Thanh Cong");
-    }
+  // const [error, setError] = useState({});
+  // const handleInputChange = (e) => {
+  //   let name = e.currentTarget.name;
+  //   let value = e.currentTarget.value;
+  //   setForm({
+  //     ...form,
+  //     [name]: value,
+  //   });
+  // };
+  // const submit = () => {
+  //   let errorObject = {};
+  //   if (!form.name) {
+  //     errorObject.name = "Vui long dien ho va ten";
+  //   }
+  //   if (!phonePattern.test(form.phone)) {
+  //     errorObject.phone = "Vui long nhap dung dinh dang phone";
+  //   }
+  //   if (!emailPattern.test(form.email)) {
+  //     errorObject.email = "Vui long nhap dung dinh dang email";
+  //   }
+  //   if (!urlPattern.test(form.url)) {
+  //     errorObject.url = "Vui long nhap dung dinh dang url";
+  //   }
+  //   setError(errorObject);
+  //   if (Object.keys(errorObject).length === 0) {
+  //     alert("Thanh Cong");
+  //   }
+
+  // };
+  let { register, handleSubmit, error } = useForm();
+
+  const submit = (form) => {
+    console.log(form);
   };
   return (
-    <div className="form">
+    <form className="form" onSubmit={handleSubmit(submit)}>
       <label>
-        <p>Họ và tên<span>*</span></p>
-        <input onChange={handleInputChange} name="name" value={form.name} type="text" placeholder="Họ và tên bạn"/>
-        {error.name && <p className="error-text">{error.name}</p>}
+        <p>
+          Họ và tên<span>*</span>
+        </p>
+        <div className="text-error">
+          <input className={error.name && 'login-error'} {...register("name", {required : true})} type="text" placeholder="Họ và tên bạn" />
+          {error.name && <p className="errorInput">{error.name}</p>}
+        </div>
       </label>
       <label>
-        <p>Số điện thoại<span>*</span></p>
-        <input onChange={handleInputChange} name="phone" value={form.phone} type="text" placeholder="Số điện thoại"/>
-        {error.phone && <p className="error-text">{error.phone}</p>}
+        <p>
+          Số điện thoại<span>*</span>
+        </p>
+        <div className="text-error">
+          <input className={error.phone && 'login-error'} {...register("phone", {pattern: 'phone'})} type="text" placeholder="Số điện thoại" />
+          {error.phone && <p className="errorInput">{error.phone}</p>}
+        </div>
       </label>
       <label>
-        <p>Email<span>*</span></p>
-        <input onChange={handleInputChange} name="email" value={form.email} type="text" placeholder="Email của bạn"/>
-        {error.email && <p className="error-text">{error.email}</p>}
+        <p>
+          Email<span>*</span>
+        </p>
+        <div className="text-error">
+          <input className={error.email && 'login-error'} {...register("email", {pattern: 'email'})} type="text" placeholder="Email của bạn" />
+          {error.email && <p className="errorInput">{error.email}</p>}
+        </div>
       </label>
       <label>
-        <p>URL Facebook<span>*</span></p>
-        <input onChange={handleInputChange} name="url" value={form.url} type="text" placeholder="https://facebook.com"/>
-        {error.url && <p className="error-text">{error.url}</p>}
+        <p>
+          URL Facebook<span>*</span>
+        </p>
+        <div className="text-error">
+          <input className={error.url && 'login-error'} {...register("url", {pattern: 'url'})} type="text" placeholder="https://facebook.com" />
+          {error.url && <p className="errorInput">{error.url}</p>}
+        </div>
       </label>
       <label className="disable">
         <p>Sử dụng COIN</p>
@@ -81,9 +100,11 @@ export default function RegisterForm() {
       </label>
       <label>
         <p>Ý kiến cá nhân</p>
-        <input type="text" placeholder="Mong muốn cá nhân và lịch bạn có thể học."/>
+        <input type="text" placeholder="Mong muốn cá nhân và lịch bạn có thể học." />
       </label>
-      <div className="btn main rect" onClick={submit}>đăng ký</div>
-    </div>
+      <button className="btn main rect" type="submit">
+        đăng ký
+      </button>
+    </form>
   );
 }

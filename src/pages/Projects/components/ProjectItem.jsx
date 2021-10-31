@@ -1,15 +1,15 @@
 import React from "react";
 
-export default function ProjectItem({img, name, makeBy}) {
+export default function ProjectItem(props) {
   return (
     <a href="#" className="item col-md-6">
       <div className="wrap">
         <div className="cover">
-          <img src={img} alt="" />
+          <img src={props.img} alt="" />
         </div>
         <div className="info">
-          <div className="name">{name}</div>
-          <div className="makeby">Hoàn thành với {makeBy} </div>
+          <div className="name">{props.name}</div>
+          <div className="makeby">Hoàn thành với {props.makeBy} </div>
         </div>
       </div>
     </a>

@@ -1,59 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import BannerDetail from "./components/BannerDetail";
 import Content from "./components/Content";
 import { CourseList } from "../../components";
+import courseService from "../../services/courseService";
 import { useParams } from "react-router";
+import Loading from "../../components/Loading";
 
 export default function CourseDetail() {
+  let [state, setState] = useState({
+    data: {},
+    loading: true,
+  });
+  let { slug } = useParams();
+  useEffect(async () => {
+    let data = await courseService.detail(slug);
+    setState({
+      loading: false,
+      data,
+    });
+  }, [slug]);
 
-  let {slug} = useParams()
-
-  let listProject = [
-    {
-      name: "React JS",
-      description: "One of the best corporate fashion brands in Sydney",
-      teacher: "Vương Đặng",
-      img: "img/img.png",
-    },
-    {
-      name: "Animation",
-      description: "One of the best corporate fashion brands in Sydney",
-      teacher: "Trần Nghĩa",
-      img: "img/img2.png",
-    },
-    {
-      name: "Scss, Grunt JS và Boostrap 4",
-      description: "One of the best corporate fashion brands in Sydney",
-      teacher: "Trần Nghĩa",
-      img: "img/img3.png",
-    },
-  ];
-  let listCourse = [
-    {
-      name: "Front-end căn bản",
-      description: "One of the best corporate fashion brands in Sydney",
-      teacher: "Vương Đặng",
-      img: "img/img.png",
-    },
-    {
-      name: "Front-end nâng cao",
-      description: "One of the best corporate fashion brands in Sydney",
-      teacher: "Trần Nghĩa",
-      img: "img/img2.png",
-    },
-    {
-      name: "Laravel framework",
-      description: "One of the best corporate fashion brands in Sydney",
-      teacher: "Trần Nghĩa",
-      img: "img/img3.png",
-    },
-  ];
+  let { loading, data } = state;
+  if (loading) return <Loading />;
   return (
     <main className="course-detail" id="main">
-      <BannerDetail />
-      <Content />
-      <CourseList smallTitle="DỰ ÁN" name="THÀNH VIÊN" list={listProject} />
-      <CourseList smallTitle="KHÓA HỌC" name="LIÊN QUAN" list={listCourse} />
+      <BannerDetail detail={data.data} />
+      <Content content={data.data}/>
+      {/* <CourseList smallTitle="DỰ ÁN" name="THÀNH VIÊN" list={listProject} />
+      <CourseList smallTitle="KHÓA HỌC" name="LIÊN QUAN" list={listCourse} /> */}
     </main>
   );
 }

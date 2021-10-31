@@ -1,20 +1,21 @@
 import React from "react";
 
-export default function BannerDetail() {
+export default function BannerDetail({detail}) {
+  console.log(detail)
   return (
     <section className="banner style2" style={{ background: "#cde6fb" }}>
       <div className="container">
         <div className="info">
-          <h1>Thực Chiến front-end căn bản</h1>
+          <h1>{detail.title}</h1>
           <div className="row">
             <div className="date">
-              <strong>Khai giảng:</strong> 12/10/2020
+              <strong>Khai giảng:</strong> {detail.opening_time}
             </div>
             <div className="time">
-              <strong>Thời lượng:</strong> 18 buổi
+              <strong>Thời lượng:</strong> {detail.count_video} buổi
             </div>
           </div>
-          <div className="btn white round" style={{ colorBtn: "#70b6f1" }}>
+          <div className="btn white round">
             đăng ký
           </div>
         </div>
@@ -23,11 +24,11 @@ export default function BannerDetail() {
         <div className="container">
           <div className="video">
             <div className="icon">
-              <img src="img/play-icon-white.png" alt="" />
+              <img src="/img/play-icon-white.png" alt="" />
             </div>
             <span>giới thiệu</span>
           </div>
-          <div className="money">4.000.000 VND</div>
+          <div className="money">{detail.money} VND</div>
         </div>
       </div>
     </section>

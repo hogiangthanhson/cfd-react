@@ -1,47 +1,52 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-export default function CourseItem({ img, name, description, teacher, status, person, liked, share, slug }) {
+export default function CourseItem(props) {
+  let badgeClass =
+    props.course_status === "sap-khai-gian"
+      ? "b3"
+      : props.course_status === "dang-dien-ra"
+      ? "b2"
+      : "b1";
   return (
     <div className="col-md-4 course">
       <div className="wrap">
-        <a className="cover" href="#">
-          <img src={img} alt="" />
-          {status === "Đã kết thúc" && <span className="badge b1">{status}</span>}
-          {status === "Đang diễn ra" && <span className="badge b2">{status}</span>}
-          {status === "Sắp khai giảng" && <span className="badge b3">{status}</span>}
+        <Link className="cover" to={'/chi-tiet-khoa-hoc/' + props.slug}>
+          <img src={props.thumbnail.link} alt="" />
+          <span className={`badge ${badgeClass}`}>
+            {props.course_status === "sap-khai-gian"
+              ? "Sap khai giang"
+              : props.course_status === "dang-dien-ra"
+              ? "Dang dien ra"
+              : "Da ket thuc"}
+          </span>
           <div className="hover">
             <div className="top">
-              {person && (
-                <div className="user">
-                  <img src="img/icon-user-white.svg" alt="" />
-                  {person}
-                </div>
-              )}
-              {liked && (
-                <div className="heart">
-                  <img src="img/icon-heart.svg" alt="" /> {liked}
-                </div>
-              )}
-            </div>
-            {share && (
-              <div className="share">
-                <img src="img/icon-viewmore.svg" alt="" />
+              <div className="user">
+                <img src="img/icon-user-white.svg" alt="" />
+                25
               </div>
-            )}
+              <div className="heart">
+                <img src="img/icon-heart.svg" alt="" /> 0
+              </div>
+            </div>
+            <div className="share">
+              <img src="img/icon-viewmore.svg" alt="" />
+            </div>
           </div>
-        </a>
+        </Link>
         <div className="info">
           <a className="name" href="#">
-            {name}
+            {props.title}
           </a>
-          <p className="des">{description}</p>
+          <p className="des">{props.short_description}</p>
         </div>
         <div className="bottom">
           <div className="teacher">
             <div className="avatar">
-              <img src="img/avt.png" alt="" />
+              <img src={props.teacher.avatar.link} alt="" />
             </div>
-            <div className="name">{teacher}</div>
+            <div className="name">{props.teacher.title}</div>
           </div>
           <div className="register-btn">Đăng Ký</div>
         </div>

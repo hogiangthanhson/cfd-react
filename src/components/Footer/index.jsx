@@ -1,4 +1,4 @@
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 export function Footer() {
   return (
@@ -27,7 +27,9 @@ export function Footer() {
             <nav>
               <ul>
                 <li>
-                  <Link exact to="/">Trang chủ</Link>
+                  <Link exact to="/">
+                    Trang chủ
+                  </Link>
                 </li>
                 <li>
                   <Link to="/khoa-hoc">Khóa học</Link>

@@ -50,7 +50,10 @@ export default function ProjectList() {
       <div className="container">
         <ProjectTitle />
         <div className="list row">
-          {listProject.map((o, i) => (<ProjectItem key={i} name={o.name} makeBy={o.makeBy} img={o.img}  />))};
+          {listProject.map((o, i) => (
+            <ProjectItem key={i} {...o} />
+          ))}
+          ;
         </div>
         <div className="bottom">
           <div className="btn overlay round btn-more">tải thêm</div>
