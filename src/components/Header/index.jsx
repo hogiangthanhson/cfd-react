@@ -3,6 +3,7 @@ import { useAuth } from "../../hooks/useAuth";
 
 export function Header() {
   let { user, logout, togglePopupLogin } = useAuth();
+
   return (
     <header id="header">
       <div className="wrap">
@@ -15,7 +16,7 @@ export function Header() {
           <span className="text">menu</span>
         </div>
         <Link to="/" exact className="logo">
-          <img src="img/logo.svg" alt="" />
+          <img src="/img/logo.svg" alt="" />
           <h1>CFD</h1>
         </Link>
         <div className="right">
@@ -23,7 +24,7 @@ export function Header() {
             <div className="have-login">
               <div className="account">
                 <a href="#" className="info">
-                  <div className="name">{user.title}</div>
+                  <div className="name">{user?.name}</div>
                   <div className="avatar">
                     <img src={user?.avatar?.link} alt="" />
                   </div>

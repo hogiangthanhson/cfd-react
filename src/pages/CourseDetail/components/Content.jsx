@@ -1,5 +1,4 @@
 import React from "react";
-import BannerDetail from "./BannerDetail";
 
 export default function Content({ content }) {
   return (
@@ -12,14 +11,12 @@ export default function Content({ content }) {
         </div>
         <h3 className="title">nội dung khóa học</h3>
         {content.content.map((e, i) => (
-          <div className="accordion">
+          <div className="accordion" key={i}>
             <div className="accordion__title">
               <div className="date">Ngày {i + 1}</div>
               <h3>{e.title}</h3>
             </div>
-            <div className="content">
-              {e.content}
-            </div>
+            <div className="content">{e.content}</div>
           </div>
         ))}
         <h3 className="title">yêu cầu cần có</h3>
@@ -66,7 +63,8 @@ export default function Content({ content }) {
         </div>
         <div className="bottom">
           <div className="user">
-            <img src="/img/user-group-icon.png" alt="" /> {content.number_student_default} bạn đã đăng ký
+            <img src="/img/user-group-icon.png" alt="" /> {content.number_student_default} bạn đã
+            đăng ký
           </div>
           <div className="btn main btn-register round">đăng ký</div>
           <div className="btn-share btn overlay round btn-icon">

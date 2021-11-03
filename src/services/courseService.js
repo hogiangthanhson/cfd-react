@@ -1,14 +1,23 @@
-import { api } from "./config";
+import { api, callApi, callApiWithToken } from "./config";
 
 const courseService = {
   home() {
-    return fetch(`${api}/elearning/v4/home`).then((res) => res.json());
+    return callApi(`${api}/elearning/v4/home`);
   },
   detail(slug) {
-    return fetch(`${api}/elearning/v4/course/${slug}`).then((res) => res.json());
+    return callApi(`${api}/elearning/v4/course/${slug}`);
   },
-  register(slug) {
-    return fetch(`${api}/elearning/v4/course-register/${slug}`).then((res) => res.json());
+  courseRelate(slug) {
+    return callApi(`${api}/elearning/v4/course-related/${slug}`);
+  },
+  register(slug, data) {
+    return callApiWithToken(`${api}/elearning/v4/course-register/${slug}`, {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
   },
 };
 

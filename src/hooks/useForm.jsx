@@ -30,7 +30,7 @@ export const useForm = (initValue = {}) => {
         if (r.pattern === "email") pattern = regexEmail;
         if (r.pattern === "url") pattern = regexUrl;
 
-        if (typeof pattern['test'] !== 'undefined' && !pattern?.test(form[i])) {
+        if (typeof pattern["test"] !== "undefined" && !pattern?.test(form[i])) {
           errorObject[i] = "Field nay khong dung dinh dang";
         }
       }

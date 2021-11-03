@@ -3,17 +3,18 @@ import { NavLink } from "react-router-dom";
 
 export function Navbar() {
   const showMenu = (e) => {
+    e.preventDefault()
     document.querySelector("body").classList.toggle("menu-is-show");
   };
   return (
-    <nav class="nav">
+    <nav className="nav">
       <ul>
-        <li class="li_login">
+        <li className="li_login">
           <a href="#">Đăng nhập</a>
           <a href="#">Đăng ký</a>
         </li>
         <li onClick={showMenu}>
-          <NavLink exact to="/">Trang chủ</NavLink>
+          <NavLink to="/" exact>Trang chủ</NavLink>
         </li>
         <li onClick={showMenu}>
           <NavLink to="/team">CFD Team</NavLink>

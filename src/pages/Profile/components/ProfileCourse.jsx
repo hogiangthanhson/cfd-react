@@ -13,15 +13,15 @@ export function ProfileCourse() {
           </a>
           <div className="date">Khai giảng ngày 09/09/2019</div>
           <div className="row">
-            <div className>
+            <div>
               <img src="/img/clock.svg" alt="" className="icon" />
               54 giờ
             </div>
-            <div className>
+            <div>
               <img src="/img/play.svg" alt="" className="icon" />
               25 video
             </div>
-            <div className>
+            <div>
               <img src="/img/user.svg" alt="" className="icon" />
               20 học viên
             </div>

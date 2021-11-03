@@ -1,44 +1,14 @@
 import React, { useState } from "react";
+import { useParams } from "react-router";
 import { useForm } from "../../../hooks/useForm";
+import courseService from "../../../services/courseService";
 
 export default function RegisterForm() {
-  // const [form, setForm] = useState({
-  //   name: '',
-  // });
-
-  // const [error, setError] = useState({});
-  // const handleInputChange = (e) => {
-  //   let name = e.currentTarget.name;
-  //   let value = e.currentTarget.value;
-  //   setForm({
-  //     ...form,
-  //     [name]: value,
-  //   });
-  // };
-  // const submit = () => {
-  //   let errorObject = {};
-  //   if (!form.name) {
-  //     errorObject.name = "Vui long dien ho va ten";
-  //   }
-  //   if (!phonePattern.test(form.phone)) {
-  //     errorObject.phone = "Vui long nhap dung dinh dang phone";
-  //   }
-  //   if (!emailPattern.test(form.email)) {
-  //     errorObject.email = "Vui long nhap dung dinh dang email";
-  //   }
-  //   if (!urlPattern.test(form.url)) {
-  //     errorObject.url = "Vui long nhap dung dinh dang url";
-  //   }
-  //   setError(errorObject);
-  //   if (Object.keys(errorObject).length === 0) {
-  //     alert("Thanh Cong");
-  //   }
-
-  // };
+  let { slug } = useParams();
   let { register, handleSubmit, error } = useForm();
 
-  const submit = (form) => {
-    console.log(form);
+  const submit = async (form) => {
+    let res = await courseService.register(slug, form);
   };
   return (
     <form className="form" onSubmit={handleSubmit(submit)}>
@@ -47,7 +17,12 @@ export default function RegisterForm() {
           Họ và tên<span>*</span>
         </p>
         <div className="text-error">
-          <input className={error.name && 'login-error'} {...register("name", {required : true})} type="text" placeholder="Họ và tên bạn" />
+          <input
+            className={error.name && "login-error"}
+            {...register("name", { required: true })}
+            type="text"
+            placeholder="Họ và tên bạn"
+          />
           {error.name && <p className="errorInput">{error.name}</p>}
         </div>
       </label>
@@ -56,7 +31,12 @@ export default function RegisterForm() {
           Số điện thoại<span>*</span>
         </p>
         <div className="text-error">
-          <input className={error.phone && 'login-error'} {...register("phone", {pattern: 'phone'})} type="text" placeholder="Số điện thoại" />
+          <input
+            className={error.phone && "login-error"}
+            {...register("phone", { pattern: "phone" })}
+            type="text"
+            placeholder="Số điện thoại"
+          />
           {error.phone && <p className="errorInput">{error.phone}</p>}
         </div>
       </label>
@@ -65,7 +45,12 @@ export default function RegisterForm() {
           Email<span>*</span>
         </p>
         <div className="text-error">
-          <input className={error.email && 'login-error'} {...register("email", {pattern: 'email'})} type="text" placeholder="Email của bạn" />
+          <input
+            className={error.email && "login-error"}
+            {...register("email", { pattern: "email" })}
+            type="text"
+            placeholder="Email của bạn"
+          />
           {error.email && <p className="errorInput">{error.email}</p>}
         </div>
       </label>
@@ -74,7 +59,12 @@ export default function RegisterForm() {
           URL Facebook<span>*</span>
         </p>
         <div className="text-error">
-          <input className={error.url && 'login-error'} {...register("url", {pattern: 'url'})} type="text" placeholder="https://facebook.com" />
+          <input
+            className={error.url && "login-error"}
+            {...register("fb")}
+            type="text"
+            placeholder="https://facebook.com"
+          />
           {error.url && <p className="errorInput">{error.url}</p>}
         </div>
       </label>

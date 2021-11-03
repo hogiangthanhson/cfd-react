@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { useForm } from "../../../hooks/useForm";
+import authService from "../../../services/authService";
 
 export function ProfileInfo() {
   let { register, handleSubmit, error } = useForm();
 
-  const submit = (form) => {
-    console.log(form);
+  const submit = async (form) => {
+    const res = await authService.updateInfo(form);
   };
   return (
-    <form className="tab1" onSubmit={handleSubmit}>
+    <form className="tab1" onSubmit={handleSubmit(submit)}>
       <label>
         <p>
           Họ và tên<span>*</span>
@@ -42,7 +43,6 @@ export function ProfileInfo() {
           {...register("email", { pattern: "email" })}
           type="text"
           defaultValue="vuong.dang@dna.vn"
-          disabled
           type="text"
         />
         {error.phone && <p className="errorInput">{error.email}</p>}

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, generatePath } from "react-router-dom";
 
 export default function CourseItem(props) {
   let badgeClass =
@@ -23,15 +23,15 @@ export default function CourseItem(props) {
           <div className="hover">
             <div className="top">
               <div className="user">
-                <img src="img/icon-user-white.svg" alt="" />
+                <img src="/img/icon-user-white.svg" alt="" />
                 25
               </div>
               <div className="heart">
-                <img src="img/icon-heart.svg" alt="" /> 0
+                <img src="/img/icon-heart.svg" alt="" /> 0
               </div>
             </div>
             <div className="share">
-              <img src="img/icon-viewmore.svg" alt="" />
+              <img src="/img/icon-viewmore.svg" alt="" />
             </div>
           </div>
         </Link>
@@ -48,7 +48,7 @@ export default function CourseItem(props) {
             </div>
             <div className="name">{props.teacher.title}</div>
           </div>
-          <div className="register-btn">Đăng Ký</div>
+          <Link to={generatePath('dang-ky/:slug',props)} className="register-btn">Đăng Ký</Link>
         </div>
       </div>
     </div>

@@ -48,7 +48,7 @@ export default function Gallery({ gallery }) {
       </div>
       <div className="list">
         {gallery.map((e, i) => (
-          <img data-flickity-lazyload={e} alt="" />
+          <img data-flickity-lazyload={e} key={i} alt="" />
         ))}
         {/* <img data-flickity-lazyload="img/img_team1.png" alt="" />
         <img data-flickity-lazyload="img/img_team2.png" alt="" />

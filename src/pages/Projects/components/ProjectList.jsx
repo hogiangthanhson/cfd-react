@@ -7,27 +7,27 @@ export default function ProjectList() {
     {
       name: "Furnitown",
       makeBy: "Trần Nghĩa",
-      img: "img/project/project (1).jpg",
+      img: "/img/project/project (1).jpg",
     },
     {
       name: "kymco",
       makeBy: "Huỳnh Tiến Tài",
-      img: "img/project/project (2).jpg",
+      img: "/img/project/project (2).jpg",
     },
     {
       name: "gboxmb",
       makeBy: "Nguyễn Văn Tuấn",
-      img: "img/project/project (3).jpg",
+      img: "/img/project/project (3).jpg",
     },
     {
       name: "Wooder",
       makeBy: "Nguyễn Đức Huy",
-      img: "img/project/project (4).jpg",
+      img: "/img/project/project (4).jpg",
     },
     {
       name: "gboxmb",
       makeBy: "Nguyễn Văn Tuấn",
-      img: "img/project/project (1).jpg",
+      img: "/img/project/project (1).jpg",
     },
     {
       name: "wooder",
@@ -37,12 +37,12 @@ export default function ProjectList() {
     {
       name: "gboxmb",
       makeBy: "Nguyễn Văn Tuấn",
-      img: "img/project/project (1).png",
+      img: "/img/project/project (1).png",
     },
     {
       name: "Wooder",
       makeBy: "Nguyễn Đức Huy",
-      img: "img/project/project (2).png",
+      img: "/img/project/project (2).png",
     },
   ];
   return (

@@ -5,7 +5,7 @@ import Home from "./pages/Home";
 import Page404 from "./pages/Page404";
 import Team from "./pages/Team";
 import CourseDetail from "./pages/CourseDetail";
-import Email from "./pages/Email";
+// import Email from "./pages/Email";
 import Faq from "./pages/Faq";
 import CoinIntroduce from "./pages/CoinIntroduce";
 import Contact from "./pages/Contact";
@@ -32,9 +32,9 @@ function App() {
       setOpenLogin(flag);
     }
   };
+
   const login = async (user) => {
-    let response = await authService.login(user);
-    let res = await response.json();
+    let res = await authService.login(user);
     if (res.data) {
       setUser(res.data);
       localStorage.setItem("login", JSON.stringify(res.data));
@@ -42,14 +42,8 @@ function App() {
     } else {
       return res.error;
     }
-    // const userLogin = {
-    //   ...user,
-    //   name: "Dang Thuyen Vuong",
-    //   avatar: "...",
-    // };
-    // localStorage.setItem("login", JSON.stringify(userLogin));
-    // setUser(userLogin);
   };
+
   const logout = () => {
     setUser(null);
     localStorage.removeItem("login");

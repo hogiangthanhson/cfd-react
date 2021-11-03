@@ -1,7 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-export default function BannerDetail({detail}) {
-  console.log(detail)
+export default function BannerDetail({ detail }) {
   return (
     <section className="banner style2" style={{ background: "#cde6fb" }}>
       <div className="container">
@@ -15,9 +15,9 @@ export default function BannerDetail({detail}) {
               <strong>Thời lượng:</strong> {detail.count_video} buổi
             </div>
           </div>
-          <div className="btn white round">
+          <Link to={`/dang-ky/${detail.slug}`} className="btn white round">
             đăng ký
-          </div>
+          </Link>
         </div>
       </div>
       <div className="bottom">

@@ -6,28 +6,30 @@ import RegisterForm from "./Components/RegisterForm";
 import RegisterInfo from "./Components/RegisterInfo";
 
 export default function Register() {
-  // let [state, setState] = useState({
-  //   data: {},
-  //   loading: true,
-  // });
-  // let { slug } = useParams();
-  // useEffect(async () => {
-  //   let data = await courseService.detail(slug);
-  //   setState({
-  //     loading: false,
-  //     data,
-  //   });
-  // }, [slug]);
+  let [state, setState] = useState({
+    loading: true,
+    data: {},
+  });
 
-  // let { loading, data } = state;
-  // if (loading) return <Loading />;
+  let { slug } = useParams();
+
+  useEffect(async () => {
+    let data = await courseService.detail(slug);
+    setState({
+      data,
+      loading: false,
+    });
+  }, [slug]);
+
+  let { loading, data } = state;
+  if (loading) return <Loading />;
 
   return (
     <main className="register-course" id="main">
       <section>
         <div className="container">
           <div className="wrap container">
-            <RegisterInfo />
+            <RegisterInfo info={data.data}/>
             <RegisterForm />
           </div>
         </div>

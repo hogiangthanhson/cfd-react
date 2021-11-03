@@ -29,12 +29,11 @@ export default function Home() {
       <Banner />
       <CourseList
         name="Khóa học Offline"
-        type="offline"
         description="The readable content of a page when looking at its layout. The point of using Lorem Ipsum
           is that it has a more-or-less normal"
         list={data.offline}
       />
-      <CourseList name="Khóa học Online" type="online" list={data.online} />
+      <CourseList name="Khóa học Online" list={data.online} />
       <Different />
       <section className="section-testimonial">
         <div className="container">
@@ -44,7 +43,7 @@ export default function Home() {
           <Testimonial review={data.review} />
         </div>
       </section>
-      <Gallery gallery={data.gallery}/>
+      <Gallery gallery={data.gallery} />
       <Action />
     </main>
   );
