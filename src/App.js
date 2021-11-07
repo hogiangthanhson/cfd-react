@@ -16,42 +16,16 @@ import Course from "./pages/Course";
 import Projects from "./pages/Projects";
 import LoginModal from "./components/LoginModal";
 import PrivateRoute from "./components/PrivateRoute";
-import authService from "./services/authService";
 import "./assets/css/custom.scss";
+import { useAuth } from "./hooks/useAuth";
 
 export const Context = createContext();
 
 function App() {
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem("login")) || null);
-  const [openLogin, setOpenLogin] = useState(false);
-
-  const togglePopupLogin = (flag) => {
-    if (typeof flag === "undefined") {
-      setOpenLogin(!openLogin);
-    } else {
-      setOpenLogin(flag);
-    }
-  };
-
-  const login = async (user) => {
-    let res = await authService.login(user);
-    if (res.data) {
-      setUser(res.data);
-      localStorage.setItem("login", JSON.stringify(res.data));
-      localStorage.setItem("token", JSON.stringify(res.data.token));
-    } else {
-      return res.error;
-    }
-  };
-
-  const logout = () => {
-    setUser(null);
-    localStorage.removeItem("login");
-  };
-
+  let { user } = useAuth();
   return (
     <BrowserRouter>
-      <Context.Provider value={{ user, login, logout, togglePopupLogin, openLogin }}>
+      <Context.Provider value={user}>
         <Header />
         <Navbar />
         {!user && <LoginModal />}

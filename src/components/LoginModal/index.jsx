@@ -1,27 +1,25 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useAuth } from "../../hooks/useAuth";
 import { useForm } from "../../hooks/useForm";
+import { closeLoginAction, fetchLogin, loginSuccessAction } from "../../store/action/authAction";
 import Modal from "../Modal";
 
 export default function LoginModal() {
+  const dispatch = useDispatch();
+  const { openLogin } = useAuth();
   let [requestError, setRequestError] = useState("");
   let { register, handleSubmit, error } = useForm();
-  let { login, openLogin, togglePopupLogin } = useAuth();
 
   const submit = async (form) => {
-    let res = await login(form);
-    if (res) {
-      setRequestError(res);
-    } else {
-      togglePopupLogin(false);
-    }
+    dispatch(fetchLogin(form));
   };
   return (
     <Modal>
       <div
         className="popup-form popup-login"
         style={{ display: openLogin ? "flex" : "none" }}
-        onClick={() => togglePopupLogin(false)}
+        onClick={() => dispatch(closeLoginAction())}
       >
         <div className="wrap" onClick={(e) => e.stopPropagation()}>
           {/* login-form */}

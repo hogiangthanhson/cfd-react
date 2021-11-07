@@ -12,13 +12,9 @@ export function CourseList(props) {
           {props.name && <h2 className="main-title">{props.name}</h2>}
         </div>
         <div className="list row">
-          {props.list.map(function (o, i) {
-            if (o.course_type === "offline") return <CourseItem key={i} {...o} />;
-          })}
-          {props.list.map(function (o, i) {
-            if (o.course_type === "online") return <CourseItem key={i} {...o} />;
-          })}
-          ;
+          {!props.list
+            ? [...Array(9)].map((o, i) => <CourseItem loading={true} key={i} {...o} />)
+            : props.list.map((o, i) => <CourseItem key={i} {...o} />)}
         </div>
       </div>
     </section>

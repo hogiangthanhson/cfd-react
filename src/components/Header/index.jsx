@@ -1,13 +1,23 @@
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { useTranslate } from "../../core";
 import { useAuth } from "../../hooks/useAuth";
+import { logoutAction, openLoginAction } from "../../store/action/authAction";
 
 export function Header() {
-  let { user, logout, togglePopupLogin } = useAuth();
+  let { user } = useAuth();
+  let dispatch = useDispatch();
 
+  const { selectLang } = useTranslate();
+
+  const changeLang = (e) => {
+    let value = e.currentTarget.value;
+    selectLang(value);
+  };
   return (
     <header id="header">
       <div className="wrap">
-        <div className="menu-hambeger">
+        <div className="menu-hambeger" >
           <div className="button">
             <span />
             <span />
@@ -20,6 +30,10 @@ export function Header() {
           <h1>CFD</h1>
         </Link>
         <div className="right">
+          <select name="" id="" onChange={changeLang}>
+            <option value="en">English</option>
+            <option value="vi">Tieng Viet</option>
+          </select>
           {user ? (
             <div className="have-login">
               <div className="account">
@@ -38,7 +52,7 @@ export function Header() {
                   to="#"
                   onClick={(e) => {
                     e.preventDefault();
-                    logout();
+                    dispatch(logoutAction());
                   }}
                 >
                   Đăng xuất
@@ -52,7 +66,7 @@ export function Header() {
                 className="btn-register"
                 onClick={(e) => {
                   e.preventDefault();
-                  togglePopupLogin(true);
+                  dispatch(openLoginAction());
                 }}
               >
                 Đăng nhập

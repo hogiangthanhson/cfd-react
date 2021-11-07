@@ -23,7 +23,7 @@ export default function RegisterForm() {
             type="text"
             placeholder="Họ và tên bạn"
           />
-          {error.name && <p className="errorInput">{error.name}</p>}
+          {error.name && <p className="error-text">{error.name}</p>}
         </div>
       </label>
       <label>
@@ -37,7 +37,7 @@ export default function RegisterForm() {
             type="text"
             placeholder="Số điện thoại"
           />
-          {error.phone && <p className="errorInput">{error.phone}</p>}
+          {error.phone && <p className="error-text">{error.phone}</p>}
         </div>
       </label>
       <label>
@@ -51,7 +51,7 @@ export default function RegisterForm() {
             type="text"
             placeholder="Email của bạn"
           />
-          {error.email && <p className="errorInput">{error.email}</p>}
+          {error.email && <p className="error-text">{error.email}</p>}
         </div>
       </label>
       <label>
@@ -60,12 +60,12 @@ export default function RegisterForm() {
         </p>
         <div className="text-error">
           <input
-            className={error.url && "login-error"}
-            {...register("fb")}
+            className={error.fb && "login-error"}
+            {...register("fb", { pattern: "url" })}
             type="text"
             placeholder="https://facebook.com"
           />
-          {error.url && <p className="errorInput">{error.url}</p>}
+          {error.fb && <p className="error-text">{error.fb}</p>}
         </div>
       </label>
       <label className="disable">

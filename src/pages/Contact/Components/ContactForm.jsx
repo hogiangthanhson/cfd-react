@@ -1,59 +1,51 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
+import { useForm } from "../../../hooks/useForm";
+import courseService from "../../../services/courseService";
 
-const emailPattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+const emailPattern =
+  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 const phonePattern = /(84|0[3|5|7|8|9])+([0-9]{8})\b/;
 
 export default function ContactForm() {
-  const [form, setForm] = useState({
-    name: '',
-  });
+  let { register, handleSubmit, error } = useForm();
 
-  const [error, setError] = useState({});
-  const handleInputChange = (e) => {
-    let name = e.currentTarget.name;
-    let value = e.currentTarget.value;
-    setForm({
-      ...form,
-      [name]: value,
-    });
-  };
-  const submit = () => {
-    let errorObject = {};
-    if (!form.name) {
-      errorObject.name = "Vui long dien ho vao ten";
-    }
-    if (!phonePattern.test(form.phone)) {
-      errorObject.phone = "Vui long nhap dung dinh dang phone";
-    }
-    if (!emailPattern.test(form.email)) {
-      errorObject.email = "Vui long nhap dung dinh dang email";
-    }
-    if (!form.title) {
-      errorObject.title = "Vui long dien tieu de";
-    }
-    if (!form.content) {
-      errorObject.content = "Vui long dien noi dung";
-    }
-    setError(errorObject);
-    if (Object.keys(errorObject).length === 0) {
-      alert("Thanh Cong");
-    }
+  const submit = async (form) => {
+    let res = await courseService.contact(form);
   };
   return (
-    <div className="form">
+    <form className="form" onSubmit={handleSubmit(submit)}>
       <label>
-        <p>Họ và tên<span>*</span></p>
-        <input onChange={handleInputChange} name="name" value={form.name} type="text" placeholder="Họ và tên bạn"/>
+        <p>
+          Họ và tên<span>*</span>
+        </p>
+        <input
+          className={error.name && "login-error"}
+          {...register("name", { required: true })}
+          type="text"
+          placeholder="Họ và tên bạn"
+        />
         {error.name && <p className="error-text">{error.name}</p>}
       </label>
       <label>
         <p>Số điện thoại</p>
-        <input onChange={handleInputChange} name="phone" value={form.phone} type="text" placeholder="Số điện thoại" />
+        <input
+          className={error.phone && "login-error"}
+          {...register("phone", { pattern: "phone" })}
+          type="text"
+          placeholder="Số điện thoại"
+        />
         {error.phone && <p className="error-text">{error.phone}</p>}
       </label>
       <label>
-        <p>Email<span>*</span></p>
-        <input onChange={handleInputChange} name="email" value={form.email} type="text" placeholder="Email của bạn" />
+        <p>
+          Email<span>*</span>
+        </p>
+        <input
+          className={error.email && "login-error"}
+          {...register("email", { pattern: "email" })}
+          type="text"
+          placeholder="Email của bạn"
+        />
         {error.email && <p className="error-text">{error.email}</p>}
       </label>
       <label>
@@ -61,16 +53,20 @@ export default function ContactForm() {
         <input type="text" placeholder="Đường dẫn website http://" />
       </label>
       <label>
-        <p>Tiêu đề<span>*</span></p>
-        <input onChange={handleInputChange} name="title" value={form.title} type="text" placeholder="Tiêu đề liên hệ" />
-        {error.title && <p className="error-text">{error.title}</p>}
+        <p>
+          Tiêu đề<span>*</span>
+        </p>
+        <input type="text" placeholder="Tiêu đề liên hệ" />
       </label>
       <label>
-        <p>Nội dung<span>*</span></p>
-        <textarea onChange={handleInputChange} name="content" value={form.content} cols={30} rows={10} defaultValue={""} />
-        {error.content && <p className="error-text">{error.content}</p>}
+        <p>
+          Nội dung<span>*</span>
+        </p>
+        <textarea cols={30} rows={10} defaultValue={""} />
       </label>
-      <div className="btn main rect" onClick={submit}>đăng ký</div>
-    </div>
+      <button className="btn main rect" type="submit">
+        đăng ký
+      </button>
+    </form>
   );
 }

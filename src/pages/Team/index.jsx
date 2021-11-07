@@ -61,14 +61,14 @@ export default function Team() {
             {listMentor.map(function (o, i) {
               return (
                 <div className="item col-md-6 col-sm-6">
-                  <Member name={o.name} description={o.description} key={i} />
+                  <Member key={i} name={o.name} description={o.description}  />
                 </div>
               );
             })}
             {listStudent.map(function (o, i) {
               return (
                 <div className="item col-md-3 col-sm-4 col-xs-6">
-                  <Member name={o.name} description={o.description} key={i} />
+                  <Member key={i} name={o.name} description={o.description} />
                 </div>
               );
             })}

@@ -1,12 +1,18 @@
 import React, { useState } from "react";
 import { useForm } from "../../../hooks/useForm";
 import authService from "../../../services/authService";
+import { useDispatch } from "react-redux";
+import { useAuth } from "../../../hooks/useAuth";
+import { updateInfoAction } from "../../../store/action/authAction";
 
 export function ProfileInfo() {
-  let { register, handleSubmit, error } = useForm();
+  let dispatch = useDispatch();
+  const { user } = useAuth();
+  let { register, handleSubmit, error } = useForm(user);
 
   const submit = async (form) => {
     const res = await authService.updateInfo(form);
+    dispatch(updateInfoAction(form));
   };
   return (
     <form className="tab1" onSubmit={handleSubmit(submit)}>

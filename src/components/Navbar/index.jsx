@@ -1,11 +1,7 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export function Navbar() {
-  const showMenu = (e) => {
-    e.preventDefault()
-    document.querySelector("body").classList.toggle("menu-is-show");
-  };
   return (
     <nav className="nav">
       <ul>
@@ -13,20 +9,20 @@ export function Navbar() {
           <a href="#">Đăng nhập</a>
           <a href="#">Đăng ký</a>
         </li>
-        <li onClick={showMenu}>
-          <NavLink to="/" exact>Trang chủ</NavLink>
+        <li>
+          <Link to="/" exact>Trang chủ</Link>
         </li>
-        <li onClick={showMenu}>
-          <NavLink to="/team">CFD Team</NavLink>
+        <li>
+          <Link to="/team">CFD Team</Link>
         </li>
-        <li onClick={showMenu}>
-          <NavLink to="/khoa-hoc">Khóa Học</NavLink>
+        <li>
+          <Link to="/khoa-hoc">Khóa Học</Link>
         </li>
-        <li onClick={showMenu}>
-          <NavLink to="/du-an">Dự Án</NavLink>
+        <li>
+          <Link to="/du-an">Dự Án</Link>
         </li>
-        <li onClick={showMenu}>
-          <NavLink to="/hop-tac">Liên hệ</NavLink>
+        <li>
+          <Link to="/hop-tac">Liên hệ</Link>
         </li>
       </ul>
     </nav>

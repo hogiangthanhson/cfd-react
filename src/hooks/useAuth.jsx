@@ -1,9 +1,8 @@
-import { useContext } from "react";
-import { Context } from "../App";
+import { useSelector } from "react-redux";
 
 // export function useAuth() {
 //   const context = useContext(Context)
 //   return context
 // }
 
-export const useAuth = () => useContext(Context);
+export const useAuth = () => useSelector(store => store.auth);

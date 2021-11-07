@@ -19,6 +19,18 @@ const courseService = {
       },
     });
   },
+  contact(data) {
+    return callApi(`${api}/elearning/v4/contact`,{
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+  },
+  list() {
+    return callApi(`${api}/elearning/v4/courses`);
+  },
 };
 
 export default courseService;

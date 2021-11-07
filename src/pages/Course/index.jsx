@@ -1,22 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { CourseList } from "../../components";
-import Loading from "../../components/Loading";
 import courseService from "../../services/courseService";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchListCourseAction } from "../../store/action/coursesAction";
 
 export default function Course() {
-  let [state, setState] = useState({
-    data: {},
-    loading: true,
-  });
+  const dispatch = useDispatch();
+  const { offline, online } = useSelector((store) => store.course);
+
   useEffect(async () => {
-    let data = await courseService.home();
-    setState({
-      loading: false,
-      data,
-    });
+    if (!offline) dispatch(fetchListCourseAction());
   }, []);
-  let { loading, data } = state;
-  if (loading) return <Loading />;
   return (
     <main className="homepage" id="main">
       <CourseList
@@ -24,11 +18,10 @@ export default function Course() {
         description="The readable content of a page when looking at its layout. The point of using Lorem Ipsum is
       that it has a more-or-less normal"
         smallTitle="Khóa học"
-        type="offline"
         name="Offline"
-        list={data.offline}
+        list={offline}
       />
-      <CourseList smallTitle="Khóa học" type="online" name="Online" list={data.online} />
+      <CourseList smallTitle="Khóa học" name="Online" list={online} />
     </main>
   );
 }
