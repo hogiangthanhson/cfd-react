@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 
 let $ = window.$;
-export default function Testimonial({ review }) {
+export default function Testimonial(props) {
   useEffect(() => {
     if ($(".section-testimonial").length) {
       var $carousel = $(".section-testimonial .images .list").flickity({
@@ -45,44 +45,19 @@ export default function Testimonial({ review }) {
         $carousel.flickity("next", true);
       });
     }
-  });
+  }, []);
   return (
-    <div className="testimonial">
-      <div className="testimonial-item">
-        <div className="item">
-          <div className="text">
-            {review.map((e, i) => (
-              <div className={`ct ct-${i + 1} ${i + 1 === 1 ? "active" : ""}`} key={i}>
-                <div className="info">
-                  <div className="name">
-                    <h4>{e.name}</h4>
-                    <p>Thành viên CFD1</p>
-                  </div>
-                  <div className="quotes">
-                    <img src="img/quotes.svg" alt="" />
-                  </div>
-                </div>
-                <div className="content">{e.content}</div>
-                <div className="bottom">
-                  <a href={e.fb} target="_blank">
-                    <img src="img/facebook.svg" alt="" />
-                  </a>
-                  <span>{e.date}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="images">
-            <div className="list">
-              {review.map((e, i) => (
-                <div className="carousel-cell" key={i}>
-                  <div className="img">
-                    <picture>
-                      <source media="(max-width: 767px)" srcSet="img/Intersect.png" />
-                      <img data-flickity-lazyload={e.cover} alt="" />
-                    </picture>
-                  </div>
-                  <div className="ct_m">
+    <section className="section-testimonial">
+      <div className="container">
+        <div className="textbox">
+          <h2 className="main-title white">Học viên cảm nhận về CFD</h2>
+        </div>
+        <div className="testimonial">
+          <div className="testimonial-item">
+            <div className="item">
+              <div className="text">
+                {props.review.map((e, i) => (
+                  <div className={`ct ct-${i + 1} ${i + 1 === 1 ? "active" : ""}`} key={i}>
                     <div className="info">
                       <div className="name">
                         <h4>{e.name}</h4>
@@ -100,15 +75,47 @@ export default function Testimonial({ review }) {
                       <span>{e.date}</span>
                     </div>
                   </div>
+                ))}
+              </div>
+              <div className="images">
+                <div className="list">
+                  {props.review.map((e, i) => (
+                    <div className="carousel-cell" key={i}>
+                      <div className="img">
+                        <picture>
+                          <source media="(max-width: 767px)" srcSet="/img/Intersect.png" />
+                          <img data-flickity-lazyload={e.cover} alt="" />
+                        </picture>
+                      </div>
+                      <div className="ct_m">
+                        <div className="info">
+                          <div className="name">
+                            <h4>{e.name}</h4>
+                            <p>Thành viên CFD1</p>
+                          </div>
+                          <div className="quotes">
+                            <img src="img/quotes.svg" alt="" />
+                          </div>
+                        </div>
+                        <div className="content">{e.content}</div>
+                        <div className="bottom">
+                          <a href={e.fb} target="_blank">
+                            <img src="img/facebook.svg" alt="" />
+                          </a>
+                          <span>{e.date}</span>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
             </div>
+            <div className="dots" />
+            <div className="btn_ctr prev" />
+            <div className="btn_ctr next" />
           </div>
         </div>
-        <div className="dots" />
-        <div className="btn_ctr prev" />
-        <div className="btn_ctr next" />
       </div>
-    </div>
+    </section>
   );
 }

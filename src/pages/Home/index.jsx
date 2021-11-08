@@ -32,7 +32,7 @@ export default function Home() {
   }, []);
 
   const { t } = useTranslate();
-  
+
   return (
     <main className="homepage" id="main">
       <Banner />
@@ -45,14 +45,7 @@ export default function Home() {
       />
       <CourseList name="Khóa học Online" list={online} />
       <Different />
-      {/* <section className="section-testimonial">
-        <div className="container">
-          <div className="textbox">
-            <h2 className="main-title white">Học viên cảm nhận về CFD</h2>
-          </div>
-          <Testimonial review={data.review} />
-        </div>
-      </section>
+      {/* <Testimonial  review={data.review} />
       <Gallery gallery={data.gallery} /> */}
       <Action />
     </main>
