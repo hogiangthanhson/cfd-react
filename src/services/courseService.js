@@ -1,4 +1,4 @@
-import { api, callApi, callApiWithToken } from "./config";
+import { api, callApi, callApiWithToken } from "../core";
 
 const courseService = {
   home() {

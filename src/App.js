@@ -33,7 +33,6 @@ function App() {
           <Route path="/" exact component={Home} />
           <Route path="/chi-tiet-khoa-hoc/:slug" component={CourseDetail} />
           <Route path="/faq" component={Faq} />
-
           <Route path="/about" component={CoinIntroduce} />
           <Route path="/hop-tac" component={Contact} />
           {/* <Route><Email /></Route> */}

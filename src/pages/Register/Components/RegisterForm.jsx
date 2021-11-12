@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useParams } from "react-router";
-import { useForm } from "../../../hooks/useForm";
+import { useForm } from "../../../core";
 import courseService from "../../../services/courseService";
 
 export default function RegisterForm() {

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useForm } from "../../../hooks/useForm";
+import { useForm } from "../../../core";
 import courseService from "../../../services/courseService";
 
 const emailPattern =

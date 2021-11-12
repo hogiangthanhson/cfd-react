@@ -1,18 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Provider } from "react-redux";
 import App from "./App";
-import { TranslateProvider } from "./core";
 import store from "./store";
 import { en, vi } from "./locals";
+import AppProvider from "./core/AppProvider";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <TranslateProvider translate={{ en, vi }}>
-        <App />
-      </TranslateProvider>
-    </Provider>
+    <AppProvider store={store} translate={{ en, vi }}>
+      <App />
+    </AppProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useForm } from "../../../hooks/useForm";
+import { useForm } from "../../../core";
 import authService from "../../../services/authService";
 import { useDispatch } from "react-redux";
 import { useAuth } from "../../../hooks/useAuth";

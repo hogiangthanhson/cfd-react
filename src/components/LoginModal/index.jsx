@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useAuth } from "../../hooks/useAuth";
-import { useForm } from "../../hooks/useForm";
+import { useForm } from "../../core";
 import { closeLoginAction, fetchLogin, loginSuccessAction } from "../../store/action/authAction";
 import Modal from "../Modal";
 
